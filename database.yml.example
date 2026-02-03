@@ -1,0 +1,24 @@
+# PostgreSQL database configuration template for JRF_Farming
+# This file shows how to configure your database.yml when you create the Rails app
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['DATABASE_USERNAME'] || 'postgres' %>
+  password: <%= ENV['DATABASE_PASSWORD'] || '' %>
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+
+development:
+  <<: *default
+  database: jrf_farming_development
+
+test:
+  <<: *default
+  database: jrf_farming_test
+
+production:
+  <<: *default
+  database: jrf_farming_production
+  username: jrf_farming
+  password: <%= ENV["JRF_FARMING_DATABASE_PASSWORD"] %>
